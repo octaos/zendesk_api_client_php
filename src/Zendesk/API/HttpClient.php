@@ -517,17 +517,17 @@ class HttpClient
      * This is a helper method to do a delete request.
      *
      * @param $endpoint
+     * @param array $deleteData
      *
      * @return null
-     * @throws \Zendesk\API\Exceptions\AuthException
-     * @throws \Zendesk\API\Exceptions\ApiResponseException
+     * @throws Exceptions\ApiResponseException
      */
-    public function delete($endpoint)
+    public function delete($endpoint, $deleteData = [])
     {
         $response = Http::send(
             $this,
             $endpoint,
-            ['method' => 'DELETE']
+            ['postFields' => $deleteData, 'method' => 'DELETE']
         );
 
         return $response;
